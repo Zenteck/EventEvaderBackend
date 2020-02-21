@@ -4,7 +4,6 @@ package com.Codeclan.example.eventevaderscraper.components;
 import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
-import com.Codeclan.example.eventevaderscraper.repositories.UserRepository;
 import com.Codeclan.example.eventevaderscraper.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
