@@ -9,6 +9,7 @@ import com.Codeclan.example.eventevaderscraper.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,6 +28,8 @@ public class DataLoader implements ApplicationRunner {
 
     }
 
+
+    @Scheduled(cron = "0 0 9-21 * * *")
     public void run(ApplicationArguments args) {
 
         Venue ibrox = new Venue("Ibrox");
