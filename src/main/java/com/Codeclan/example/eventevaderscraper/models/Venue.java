@@ -35,18 +35,19 @@ public class Venue implements Serializable {
             joinColumns = {@JoinColumn(name = "venue_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
     )
-    private ArrayList<User> users;
+    private List<User> users;
 
 
     public Venue(String name){
         this.name = name;
-        this.users = new ArrayList<>();
+        this.events = new ArrayList<Event>();
+        this.users = new ArrayList<User>();
     }
 
     public Venue() {
     }
 
-    public ArrayList<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
