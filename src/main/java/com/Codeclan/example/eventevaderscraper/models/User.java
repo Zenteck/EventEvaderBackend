@@ -13,10 +13,8 @@ import java.util.List;
 
 public class User implements Serializable {
 
-
     @Column(name = "email")
     private String emailAddress;
-
 
     @JsonIgnoreProperties(value = "users")
     @ManyToMany
