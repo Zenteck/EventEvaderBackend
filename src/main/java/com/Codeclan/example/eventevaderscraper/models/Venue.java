@@ -1,9 +1,11 @@
 package com.Codeclan.example.eventevaderscraper.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,11 +28,38 @@ public class Venue implements Serializable {
     @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
     private List<Event> events;
 
+    @JsonIgnoreProperties(value="venues")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "venue_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
+    )
+    private ArrayList<User> users;
+
+
     public Venue(String name){
         this.name = name;
+        this.users = new ArrayList<>();
     }
 
     public Venue() {
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public void addEvent(Event event){
+        this.events.add(event);
+    }
+
+    public void removeEvent(Event event){
+        this.events.remove(event);
     }
 
     public String getName() {
@@ -64,4 +93,6 @@ public class Venue implements Serializable {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+
 }
