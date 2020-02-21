@@ -29,6 +29,8 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
+        TheListScraper.getEvents();
+
         Venue ibrox = new Venue("Ibrox");
         venueRepository.save(ibrox);
 
