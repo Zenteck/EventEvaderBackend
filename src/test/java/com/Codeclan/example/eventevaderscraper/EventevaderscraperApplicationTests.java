@@ -19,10 +19,8 @@ class EventevaderscraperApplicationTests {
 
 	@Test
 	void canGetStringBack(){
-		ResponseEntity<String> response = eventClient.requestEvents();
-		System.out.println("hi");
+		String response = eventClient.requestEvents();
 		System.out.println(response);
-
 
 	}
 

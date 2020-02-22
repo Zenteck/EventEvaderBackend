@@ -10,7 +10,7 @@ public class EventClient {
     public EventClient() {
     }
 
-    public ResponseEntity<String> requestEvents(){
+    public String requestEvents(){
 
         String url = "https://api.list.co.uk/v1/search?query=glasgow";
 
@@ -22,9 +22,11 @@ public class EventClient {
 
         HttpEntity request = new HttpEntity(headers);
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,request, String.class, 1);
-        System.out.println(response.getStatusCode());
-        System.out.println(response);
+        ResponseEntity<String> listResponse = restTemplate.exchange(url, HttpMethod.GET,request, String.class, 1);
+
+        System.out.println(listResponse.getStatusCode());
+
+        String response = listResponse.getBody();
 
         return response;
     }
