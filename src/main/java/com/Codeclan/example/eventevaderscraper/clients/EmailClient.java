@@ -1,5 +1,6 @@
 package com.Codeclan.example.eventevaderscraper.clients;
 
+import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.*;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 
 public class EmailClient {
 
-    public static void sendMail(String recipient) throws Exception{
+    public static void sendMail(String recipient, Event event) throws Exception{
         System.out.println("Preparing to send an email");
         Properties properties = new Properties();
 
@@ -32,7 +33,7 @@ public class EmailClient {
 
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recipient);
+        Message message = prepareMessage(session, myAccountEmail, recipient, event);
         System.out.println(message.getSubject());
 
         if (message != null) {
@@ -43,7 +44,7 @@ public class EmailClient {
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient){
+    private static Message prepareMessage(Session session, String myAccountEmail, String recipient, Event event){
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
