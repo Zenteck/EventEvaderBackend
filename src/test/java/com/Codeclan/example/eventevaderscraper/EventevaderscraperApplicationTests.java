@@ -2,8 +2,12 @@ package com.Codeclan.example.eventevaderscraper;
 
 import com.Codeclan.example.eventevaderscraper.clients.EventClient;
 import com.Codeclan.example.eventevaderscraper.components.TheListReader;
+import com.Codeclan.example.eventevaderscraper.models.Event;
+import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.payloads.TheListEvent;
+import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,8 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class EventevaderscraperApplicationTests {
+
+	Venue celtic;
 
 
 	@Autowired
@@ -20,6 +28,9 @@ class EventevaderscraperApplicationTests {
 
 	@Autowired
 	TheListReader theListReader;
+
+	@Autowired
+	EventRepository eventRepository;
 
 	@Test
 	void contextLoads() {
@@ -36,6 +47,12 @@ class EventevaderscraperApplicationTests {
 		TheListEvent[] events = theListReader.getEvents();
 	}
 
+	@Test
+	void canGetEventsByVenue(){
+
+		List<Event> celticEvents = eventRepository.findByVenueId(2);
+		assertEquals(2,celticEvents.size());
+	}
 
 
 }

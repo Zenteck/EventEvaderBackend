@@ -55,6 +55,9 @@ public class DataLoader implements ApplicationRunner {
         Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
         eventRepository.save(rugby2);
 
+        Event football3 = new Event("20/05", "1600", "Celtic v Barcelona", celtic);
+        eventRepository.save(football3);
+
 
         User alan = new User("apps+eventevader@zenteck.co.uk");
         alan.addVenue(celtic);

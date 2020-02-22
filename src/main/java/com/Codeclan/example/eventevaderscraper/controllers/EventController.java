@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,6 +43,12 @@ public class    EventController {
         Event found = eventRepository.getOne(id);
         eventRepository.delete(found);
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/event/{venueId}")
+    public ResponseEntity<Event> postEventByVenue(@PathVariable Long venueId){
+            List<Event> eventsOfVenue = eventRepository.findByVenueId(venueId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
