@@ -12,7 +12,7 @@ public class EventClient {
 
     public String requestEvents(){
 
-        String url = "https://api.list.co.uk/v1/search?query=glasgow";
+        String url = "https://api.list.co.uk/v1/events?location=glasgow&max_date=31/08/20";
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -23,6 +23,8 @@ public class EventClient {
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> listResponse = restTemplate.exchange(url, HttpMethod.GET,request, String.class, 1);
+
+
 
         System.out.println(listResponse.getStatusCode());
 
