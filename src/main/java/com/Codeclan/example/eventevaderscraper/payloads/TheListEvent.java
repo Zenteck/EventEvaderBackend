@@ -1,8 +1,13 @@
 package com.Codeclan.example.eventevaderscraper.payloads;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TheListEvent {
+
 
     private String event_id;
 
@@ -141,6 +146,7 @@ public class TheListEvent {
     public void setPerformance_count(int performance_count) {
         this.performance_count = performance_count;
     }
+
 }
 
 
