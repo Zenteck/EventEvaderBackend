@@ -2,8 +2,10 @@ package com.Codeclan.example.eventevaderscraper.components;
 
 
 import com.Codeclan.example.eventevaderscraper.models.Event;
+import com.Codeclan.example.eventevaderscraper.models.User;
 import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
+import com.Codeclan.example.eventevaderscraper.repositories.UserRepository;
 import com.Codeclan.example.eventevaderscraper.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -17,8 +19,8 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     EventRepository eventRepository;
 
-//    @Autowired
-//    UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     VenueRepository venueRepository;
@@ -52,6 +54,24 @@ public class DataLoader implements ApplicationRunner {
 
         Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
         eventRepository.save(rugby2);
+
+
+        User alan = new User("apps+eventevader@zenteck.co.uk");
+        alan.addVenue(celtic);
+        alan.addEvent(football2);
+        userRepository.save(alan);
+
+        User azhar = new User("codeninja@codeclan.com");
+        azhar.addVenue(ibrox);
+        azhar.addVenue(hampden);
+        azhar.addEvent(football1);
+        userRepository.save(azhar);
+
+        User elle = new User("plattsnpink@gmail.com");
+        elle.addVenue(hampden);
+        elle.addEvent(rugby1);
+        elle.addEvent(rugby2);
+        userRepository.save(elle);
 
 
     }

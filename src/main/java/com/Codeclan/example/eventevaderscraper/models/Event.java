@@ -1,13 +1,14 @@
 package com.Codeclan.example.eventevaderscraper.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
-    @Entity
+@Entity
     @Table(name = "events")
 
     public class Event implements Serializable{
@@ -30,17 +31,35 @@ import java.sql.Time;
         @JoinColumn(name = "venue_id", nullable = false)
         private Venue venue;
 
+        @JsonIgnoreProperties(value="events")
+        @ManyToMany
+        @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+        @JoinTable(
+                joinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)},
+                inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
+        )
+        private List<User> users;
+
         public Event(String date, String startTime, String title, Venue venue) {
             this.date = date;
             this.startTime = startTime;
             this.title = title;
             this.venue = venue;
+            this.users = new ArrayList<>();
         }
 
         public Event() {
         }
 
-        public String getDate() {
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public String getDate() {
             return date;
         }
 

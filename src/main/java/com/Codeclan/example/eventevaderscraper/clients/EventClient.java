@@ -24,7 +24,7 @@ public class EventClient {
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,request, String.class, 1);
-
+        System.out.println(response.getStatusCode());
         System.out.println(response);
 
         return response;
