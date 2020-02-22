@@ -46,5 +46,3 @@ build/
 out/
 target/
 .idea_modules/
-/db/eventservice_db.mv.db
-/db/eventservice_db.trace.db
