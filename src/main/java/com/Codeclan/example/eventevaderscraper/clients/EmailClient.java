@@ -1,5 +1,6 @@
 package com.Codeclan.example.eventevaderscraper.clients;
 
+import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.*;
