@@ -25,7 +25,6 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     VenueRepository venueRepository;
 
-
     public DataLoader(){
 
     }
@@ -33,7 +32,6 @@ public class DataLoader implements ApplicationRunner {
 
     @Scheduled(cron = "0 0 9-21 * * *")
     public void run(ApplicationArguments args) {
-
 
         Venue ibrox = new Venue("Ibrox");
         venueRepository.save(ibrox);
@@ -74,7 +72,6 @@ public class DataLoader implements ApplicationRunner {
         elle.addEvent(rugby1);
         elle.addEvent(rugby2);
         userRepository.save(elle);
-
 
 
     }
