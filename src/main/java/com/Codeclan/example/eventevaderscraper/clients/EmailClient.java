@@ -25,16 +25,21 @@ public class EmailClient {
         String myPassword = "azhar-1code-2";
 
         Session session = Session.getInstance(properties, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication(){
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication () {
                 return new PasswordAuthentication(myAccountEmail, myPassword);
             }
+
         });
 
-        Message message= prepareMessage(session, myAccountEmail, recipient);
+        Message message = prepareMessage(session, myAccountEmail, recipient);
+        System.out.println(message.getSubject());
 
-        Transport.send(message);
-        System.out.println("Message sent successfully");
+        if (message != null) {
+            Transport.send(message);
+            System.out.println("Message sent successfully");
+        }
+
 
     }
 
@@ -42,9 +47,10 @@ public class EmailClient {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO,new InternetAddress((recipient)));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress((recipient)));
             message.setSubject("EventsEvader Notification");
             message.setText("Hey there evader, \n Here are a list of events in the coming week you may want to avoid ");
+            return message;
         } catch (Exception ex) {
             Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
         };
