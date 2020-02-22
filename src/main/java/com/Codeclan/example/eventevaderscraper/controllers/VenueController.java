@@ -15,6 +15,8 @@ public class VenueController {
     @Autowired
     VenueRepository venueRepository;
 
+
+
     @GetMapping(value = "/venues")
     public ResponseEntity<List<Venue>> getAllVenues(){
         return new ResponseEntity<>(venueRepository.findAll(), HttpStatus.OK);

@@ -32,13 +32,13 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) {
 
 
-        Venue ibrox = new Venue("Ibrox");
+        Venue ibrox = new Venue("Ibrox Stadium", "9a37fbc9-19e0-892b-f58b-c6f40000aaa5");
         venueRepository.save(ibrox);
 
-        Venue celtic = new Venue("Celtic Park");
+        Venue celtic = new Venue("Celtic Park", "b940eadd-4f1e-b60e-85e0-bcc40000356f");
         venueRepository.save(celtic);
 
-        Venue hampden = new Venue("Hampden Park");
+        Venue hampden = new Venue("Hampden Park", "2c9fdadd-4f1e-b60e-33e0-bcc400002a94");
         venueRepository.save(hampden);
 
 
