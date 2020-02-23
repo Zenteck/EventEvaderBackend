@@ -67,5 +67,13 @@ public class    EventController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/events/next7days")
+    public ResponseEntity<Event> getEventsNext7Days(){
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusDays(7);
+        List<Event> eventsInNext7Days = eventRepository.findByDateBetween(startDate,endDate);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 }
