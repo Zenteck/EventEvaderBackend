@@ -5,7 +5,11 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -14,7 +18,7 @@ import java.util.List;
     public class Event implements Serializable{
 
         @Column(name = "date")
-        private String date;
+        private LocalDate date;
 
         @Column(name = "startTime")
         private String startTime;
@@ -40,7 +44,7 @@ import java.util.List;
         )
         private List<User> users;
 
-        public Event(String date, String startTime, String title, Venue venue) {
+        public Event(LocalDate date, String startTime, String title, Venue venue) {
             this.date = date;
             this.startTime = startTime;
             this.title = title;
@@ -51,19 +55,19 @@ import java.util.List;
         public Event() {
         }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
-
-    public String getDate() {
-            return date;
+        public List<User> getUsers() {
+            return users;
         }
 
-        public void setDate(String date) {
+        public void setUsers(ArrayList<User> users) {
+            this.users = users;
+        }
+
+        public LocalDate getDate() {
+                return date;
+            }
+
+        public void setDate(LocalDate date) {
             this.date = date;
         }
 

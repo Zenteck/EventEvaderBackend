@@ -13,6 +13,11 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -33,6 +38,14 @@ public class DataLoader implements ApplicationRunner {
     @Scheduled(cron = "0 0 9-21 * * *")
     public void run(ApplicationArguments args) {
 
+        SimpleDateFormat apiDateFormat = new SimpleDateFormat("dd/mm") ;
+
+        LocalDate today =  LocalDate.of(2020, Month.FEBRUARY, 23);
+
+        LocalDate tomorrow = LocalDate.of(2020, Month.FEBRUARY, 24);
+
+
+
         Venue ibrox = new Venue("Ibrox");
         venueRepository.save(ibrox);
 
@@ -43,19 +56,19 @@ public class DataLoader implements ApplicationRunner {
         venueRepository.save(hampden);
 
 
-        Event football1 = new Event("20/02", "1500", "Rangers v Kilmarnock", ibrox);
+        Event football1 = new Event(today , "1500", "Rangers v Kilmarnock", ibrox);
         eventRepository.save(football1);
 
-        Event football2 = new Event("27/02", "1900", "Celtic v Cally", celtic);
+        Event football2 = new Event(today, "1900", "Celtic v Cally", celtic);
         eventRepository.save(football2);
 
-        Event rugby1 = new Event("24/02", "1200", "Scotland v Ireland", hampden);
-        eventRepository.save(rugby1);
+//        Event rugby1 = new Event("24/02", "1200", "Scotland v Ireland", hampden);
+//        eventRepository.save(rugby1);
+//
+//        Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
+//        eventRepository.save(rugby2);
 
-        Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
-        eventRepository.save(rugby2);
-
-        Event football3 = new Event("20/05", "1600", "Celtic v Barcelona", celtic);
+        Event football3 = new Event(tomorrow, "1600", "Celtic v Barcelona", celtic);
         eventRepository.save(football3);
 
 
@@ -72,8 +85,8 @@ public class DataLoader implements ApplicationRunner {
 
         User elle = new User("plattsnpink@gmail.com");
         elle.addVenue(hampden);
-        elle.addEvent(rugby1);
-        elle.addEvent(rugby2);
+//        elle.addEvent(rugby1);
+//        elle.addEvent(rugby2);
         userRepository.save(elle);
 
 

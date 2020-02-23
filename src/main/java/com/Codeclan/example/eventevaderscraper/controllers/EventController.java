@@ -4,9 +4,11 @@ import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,12 @@ public class    EventController {
     public ResponseEntity<Event> postEventByVenue(@PathVariable Long venueId){
             List<Event> eventsOfVenue = eventRepository.findByVenueId(venueId);
             return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/event/{today}")
+    public ResponseEntity<Event> getAllEventsToday(@PathVariable LocalDate today){
+        List<Event> todaysEvents = eventRepository.findByDate(today);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }

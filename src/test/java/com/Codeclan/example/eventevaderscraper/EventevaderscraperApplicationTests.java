@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +55,14 @@ class EventevaderscraperApplicationTests {
 		List<Event> celticEvents = eventRepository.findByVenueId(2);
 		assertEquals(2,celticEvents.size());
 	}
+
+	@Test
+	void cangetTodaysEvents(){
+		LocalDate today = LocalDate.of(2020, Month.FEBRUARY, 23);
+		List<Event> todaysEvents = eventRepository.findByDate(today);
+		assertEquals(2, todaysEvents.size());
+	}
+
 
 
 }
