@@ -44,9 +44,10 @@ public class DataLoader implements ApplicationRunner {
 
         LocalDate tomorrow = today.now().plusDays(1);
 
+        LocalDate next7Days = today.now().plusDays(7);
 
 
-        Venue ibrox = new Venue("Ibrox");
+                Venue ibrox = new Venue("Ibrox");
         venueRepository.save(ibrox);
 
         Venue celtic = new Venue("Celtic Park");

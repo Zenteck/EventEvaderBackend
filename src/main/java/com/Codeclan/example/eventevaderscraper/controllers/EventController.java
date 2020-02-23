@@ -53,10 +53,19 @@ public class    EventController {
             return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/event/{today}")
-    public ResponseEntity<Event> getAllEventsToday(@PathVariable LocalDate today){
+    @GetMapping(value = "/event/today")
+    public ResponseEntity<Event> getAllEventsToday(){
+        LocalDate today = LocalDate.now();
         List<Event> todaysEvents = eventRepository.findByDate(today);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/events/tomorrow")
+    public ResponseEntity<Event> getAllEventsTomorrow(){
+        LocalDate tomorrow = LocalDate.now().plusDays(1);
+        List<Event> tomorrowsEvents = eventRepository.findByDate(tomorrow);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 }
