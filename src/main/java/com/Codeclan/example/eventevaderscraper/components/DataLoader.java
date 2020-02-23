@@ -40,9 +40,9 @@ public class DataLoader implements ApplicationRunner {
 
         SimpleDateFormat apiDateFormat = new SimpleDateFormat("dd/mm") ;
 
-        LocalDate today =  LocalDate.of(2020, Month.FEBRUARY, 23);
+        LocalDate today =  LocalDate.now();
 
-        LocalDate tomorrow = LocalDate.of(2020, Month.FEBRUARY, 24);
+        LocalDate tomorrow = today.now().plusDays(1);
 
 
 

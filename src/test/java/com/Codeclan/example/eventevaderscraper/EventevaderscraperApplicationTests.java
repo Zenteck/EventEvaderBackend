@@ -63,6 +63,13 @@ class EventevaderscraperApplicationTests {
 		assertEquals(2, todaysEvents.size());
 	}
 
+	@Test
+	void canGetTomorrowsEvents(){
+		LocalDate tomorrow = LocalDate.of(2020, Month.FEBRUARY, 24);
+		List<Event> tomorrowsEvents = eventRepository.findByDate(tomorrow);
+		assertEquals(1,tomorrowsEvents.size());
+	}
+
 
 
 }
