@@ -33,7 +33,6 @@ public class TheListReader {
         List<TheListEvent> allEvents = new ArrayList<>();
 
 //        for each venue in DB, call out for all events matching place_id
-
         ArrayList<String> placeIds = new ArrayList<>();
         List<Venue> venues = venueRepository.findAll();
         for (Venue venue : venues){
@@ -43,24 +42,26 @@ public class TheListReader {
 
         for (String placeId : placeIds){
             String eventsResponse = eventClient.requestEventsByPlaceId(placeId);
-            wait(10000);
+
 
             TheListEvent[] foundEvents = objectMapper.readValue(eventsResponse, TheListEvent[].class);
             for (TheListEvent event : foundEvents) {
-                System.out.println(event);
                 allEvents.add(event);
             }
         }
+
 //        for each event received, make an event object and save it.
         for (TheListEvent listEvent : allEvents){
-            String placeId = listEvent.getPlace_id();
-            Venue venue = venueRepository.findByPlaceId(placeId);
-            Event eventObject = new Event(
-                    listEvent.getStart_ts(),
-                    listEvent.getEnd_ts(),
-                    listEvent.getName(),
-                    venue);
+
+            String placeId = listEvent.getPlaceId();
+            List<Venue> venueByPlaceId = venueRepository.findByPlaceId(placeId);
+            Venue venue = venueByPlaceId.get(0);
+                   String date = listEvent.getStart_ts();
+                   String startTime = listEvent.getEnd_ts();
+                   String title =  listEvent.getName();
+            Event eventObject = new Event(date, startTime, title, venue);
             eventRepository.save(eventObject);
+            System.out.println(eventObject.getVenue().getPlaceId());
 
         }
         return allEvents;

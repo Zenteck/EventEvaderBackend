@@ -92,7 +92,7 @@ import java.util.List;
         }
 
         public Venue getVenue() {
-            return venue;
+            return this.venue;
         }
 
         public void setVenue(Venue venue) {

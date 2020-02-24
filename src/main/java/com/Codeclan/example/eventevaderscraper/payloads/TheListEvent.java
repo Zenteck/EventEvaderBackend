@@ -3,6 +3,7 @@ package com.Codeclan.example.eventevaderscraper.payloads;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +16,7 @@ public class TheListEvent {
 
     private List<String> tags;
 
-    private String place_id;
+    private ArrayList<TheListSchedule> schedules;
 
     private String start_ts;
 
@@ -33,11 +34,11 @@ public class TheListEvent {
 
     private int performance_count;
 
-    public TheListEvent(String event_id, String name, List<String> tags, String place_id, String start_ts, String end_ts, String place_name, String town, String postal_code, double lat, double lng, int performance_count) {
+    public TheListEvent(String event_id, String name, List<String> tags, ArrayList<TheListSchedule> schedules, String start_ts, String end_ts, String place_name, String town, String postal_code, double lat, double lng, int performance_count) {
         this.event_id = event_id;
         this.name = name;
         this.tags = tags;
-        this.place_id = place_id;
+        this.schedules = schedules;
         this.start_ts = start_ts;
         this.end_ts = end_ts;
         this.place_name = place_name;
@@ -73,14 +74,6 @@ public class TheListEvent {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    public String getPlace_id() {
-        return place_id;
-    }
-
-    public void setPlace_id(String place_id) {
-        this.place_id = place_id;
     }
 
     public String getStart_ts() {
@@ -147,6 +140,17 @@ public class TheListEvent {
         this.performance_count = performance_count;
     }
 
+    public ArrayList<TheListSchedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(ArrayList<TheListSchedule> schedules) {
+        this.schedules = schedules;
+    }
+
+    public String getPlaceId(){
+       return this.schedules.get(0).getPlace_id();
+    }
 
 
 }

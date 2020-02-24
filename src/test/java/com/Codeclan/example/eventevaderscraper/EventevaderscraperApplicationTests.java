@@ -54,14 +54,21 @@ class EventevaderscraperApplicationTests {
 		System.out.println(venues);
 	}
 
+
+
 	@Test
 	void canGetPlaceIds(){
 		List<Venue> venues = venueRepository.findAll();
 		for(Venue venue : venues){
-			System.out.println(venue.getPlaceId());
+			String placeId = venue.getPlaceId();
+			System.out.println(placeId);
 		}
 	}
 
-
-
+	@Test
+	void canGetVenuesByPlaceId(){
+		List<Venue> venues = venueRepository.findByPlaceId("9a37fbc9-19e0-892b-f58b-c6f40000aaa5");
+		Venue venue = venues.get(0);
+		System.out.println(venue.getName());
+	}
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface VenueRepository extends JpaRepository <Venue, Long>{
 
     List<Venue> findAll();
-    Venue findByPlaceId(String placeId);
+
+    List<Venue> findByPlaceId(String placeId);
 }

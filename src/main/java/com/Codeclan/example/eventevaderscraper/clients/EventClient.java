@@ -17,8 +17,6 @@ public class EventClient {
 
         String url = baserUrl + placeId;
 
-        System.out.println(url);
-
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
