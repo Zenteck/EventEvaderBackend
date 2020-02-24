@@ -1,7 +1,6 @@
 package com.Codeclan.example.eventevaderscraper.components;
 
 
-import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.models.User;
 import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
@@ -14,9 +13,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
 
 
 @Component
@@ -42,6 +39,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Scheduled(cron = "0 0 9-21 * * *")
     public void run(ApplicationArguments args) throws JsonProcessingException {
+
         userRepository.deleteAll();
         eventRepository.deleteAll();
         venueRepository.deleteAll();
@@ -49,17 +47,17 @@ public class DataLoader implements ApplicationRunner {
 
 
         //Creating dates
-        LocalDate dateToday =  LocalDate.now();
-
-        LocalDate dateTomorrow = dateToday.now().plusDays(1);
-
-        LocalDate dateIn7Days = dateToday.now().plusDays(7);
-
-        LocalDate dateIn8Days = dateToday.now().plusDays(8);
-
-        LocalDate dateIn30Days = dateToday.now().plusDays(30);
-
-        LocalDate dateIn34Days = dateToday.plusDays(34);
+//        LocalDate dateToday =  LocalDate.now();
+//
+//        LocalDate dateTomorrow = dateToday.now().plusDays(1);
+//
+//        LocalDate dateIn7Days = dateToday.now().plusDays(7);
+//
+//        LocalDate dateIn8Days = dateToday.now().plusDays(8);
+//
+//        LocalDate dateIn30Days = dateToday.now().plusDays(30);
+//
+//        LocalDate dateIn34Days = dateToday.plusDays(34);
 
 
         //Creating venues
@@ -88,8 +86,7 @@ public class DataLoader implements ApplicationRunner {
 //
 //        Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
 //        eventRepository.save(rugby2);
-//
-//
+
         User alan = new User("apps+eventevader@zenteck.co.uk");
 //        alan.addVenue(celtic);
 //        alan.addEvent(football2);

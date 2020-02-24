@@ -87,29 +87,4 @@ public class TheListEvent {
         return this.schedules.get(0).getLng();
     }
 
-
-
-
-
-
-
 }
-
-
-//{
-//        "event_id": "9654b832-ebf5-d79d-887e-a4e500175a3a",
-//        "name": "Glasgow Green - the story of Glasgow's oldest public park",
-//        "tags": [
-//        "talks & lectures",
-//        "kids"
-//        ],
-//        "place_id": "1030eadd-4f1e-b60e-65e0-bcc400004e9d",
-//        "start_ts": "2020-02-27T18:00:00.000Z",
-//        "end_ts": "2020-02-27T18:00:00.000Z",
-//        "place_name": "Bridgeton Library",
-//        "town": "Glasgow",
-//        "postal_code": "G40 2QH",
-//        "lat": "55.84945",
-//        "lng": "-4.22633",
-//        "performance_count": 1
-//        }

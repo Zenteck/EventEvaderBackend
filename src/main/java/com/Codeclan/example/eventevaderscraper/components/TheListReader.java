@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,8 +32,6 @@ public class TheListReader {
 
 //        initialize array for payload events
         List<TheListEvent> allEvents = new ArrayList<>();
-
-
 
 //        Declare mapper
         ObjectMapper objectMapper = new ObjectMapper();
@@ -75,6 +72,7 @@ public class TheListReader {
             LocalDateTime startTime = LocalDateTime.parse(listEvent.getStartTime(), formatter);
             String title =  listEvent.getName();
 
+//            save an event object(finally!)
             Event eventObject = new Event(startTime, title, venue);
             eventRepository.save(eventObject);
 
