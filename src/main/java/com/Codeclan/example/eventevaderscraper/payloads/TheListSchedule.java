@@ -2,6 +2,10 @@ package com.Codeclan.example.eventevaderscraper.payloads;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TheListSchedule {
 

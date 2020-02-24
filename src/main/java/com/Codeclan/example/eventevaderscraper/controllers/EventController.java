@@ -4,13 +4,16 @@ import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class EventController {
+public class    EventController {
 
     @Autowired
     EventRepository eventRepository;
@@ -43,5 +46,42 @@ public class EventController {
         eventRepository.delete(found);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/event/{venueId}")
+    public ResponseEntity<Event> postEventByVenue(@PathVariable Long venueId){
+            List<Event> eventsOfVenue = eventRepository.findByVenueId(venueId);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/event/today")
+    public ResponseEntity<Event> getAllEventsToday(){
+        LocalDateTime today = LocalDateTime.now();
+        List<Event> todaysEvents = eventRepository.findByStartTime(today);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/events/tomorrow")
+    public ResponseEntity<Event> getAllEventsTomorrow(){
+        LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
+        List<Event> tomorrowsEvents = eventRepository.findByStartTime(tomorrow);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/events/next7days")
+    public ResponseEntity<Event> getEventsNext7Days(){
+        LocalDateTime startDate = LocalDateTime.now();
+        LocalDateTime endDate = startDate.plusDays(7);
+        List<Event> eventsInNext7Days = eventRepository.findByStartTimeBetween(startDate,endDate);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "events/next30days")
+    public ResponseEntity<Event> getEventsNext30Days(){
+        LocalDateTime startDate = LocalDateTime.now();
+        LocalDateTime endDate = startDate.plusDays(30);
+        List<Event> eventsInNext30Days = eventRepository.findByStartTimeBetween(startDate,endDate);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 }

@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,22 +31,34 @@ public class TheListReader {
 
     public void getEvents() throws JsonProcessingException {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
+//        initialize array for payload events
         List<TheListEvent> allEvents = new ArrayList<>();
 
-//        for each venue in DB, call out for all events matching place_id
+
+
+//        Declare mapper
+        ObjectMapper objectMapper = new ObjectMapper();
+
+//        declare time formatter         2020-02-29T00:00:00+00:00
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+
+//         initialize array for placeids
         ArrayList<String> placeIds = new ArrayList<>();
+
+//        pull all venues
         List<Venue> venues = venueRepository.findAll();
+
+//        for each venue in DB, call out for all events matching place_id
         for (Venue venue : venues){
             String placeId = venue.getPlaceId();
             placeIds.add(placeId);
         }
 
+//        for each place_id, call TheListApi and get matching events
         for (String placeId : placeIds){
             String eventsResponse = eventClient.requestEventsByPlaceId(placeId);
 
-
+//          for each event make a payload event and store it in a list
             TheListEvent[] foundEvents = objectMapper.readValue(eventsResponse, TheListEvent[].class);
             for (TheListEvent event : foundEvents) {
                 allEvents.add(event);
@@ -53,18 +68,16 @@ public class TheListReader {
 //        for each event received, make an event object and save it.
         for (TheListEvent listEvent : allEvents){
 
+//            Prepare data for EventObject properties
             String placeId = listEvent.getPlaceId();
             List<Venue> venueByPlaceId = venueRepository.findByPlaceId(placeId);
             Venue venue = venueByPlaceId.get(0);
-                   String date = listEvent.getStartTime();
-                   String startTime = listEvent.getStartTime();
-                   String title =  listEvent.getName();
-            Event eventObject = new Event(date, startTime, title, venue);
+            LocalDateTime startTime = LocalDateTime.parse(listEvent.getStartTime(), formatter);
+            String title =  listEvent.getName();
+
+            Event eventObject = new Event(startTime, title, venue);
             eventRepository.save(eventObject);
-            System.out.println(eventObject.getVenue().getPlaceId());
 
         }
     }
-
-
 }
