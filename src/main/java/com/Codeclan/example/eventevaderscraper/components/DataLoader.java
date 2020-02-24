@@ -67,7 +67,7 @@ public class DataLoader implements ApplicationRunner {
         Venue hampden = new Venue("Hampden Park", "2c9fdadd-4f1e-b60e-33e0-bcc400002a94");
         venueRepository.save(hampden);
 
-        Venue murrayfield = new Venue("Murrayfield", "54b0eadd-4f1e-b60e-06e0-bcc400003579");
+        Venue murrayfield = new Venue("Murrayfield", "938fdadd-4f1e-b60e-03e0-bcc400002719");
         venueRepository.save(murrayfield);
 
 

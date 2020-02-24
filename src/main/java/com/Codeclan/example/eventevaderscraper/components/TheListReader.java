@@ -28,6 +28,7 @@ public class TheListReader {
     @Autowired
     VenueRepository venueRepository;
 
+
     public void getEvents() throws JsonProcessingException {
 
 //        initialize array for payload events
@@ -36,7 +37,7 @@ public class TheListReader {
 //        Declare mapper
         ObjectMapper objectMapper = new ObjectMapper();
 
-//        declare time formatter         2020-02-29T00:00:00+00:00
+//        declare time formatter        sample timestamp: 2020-02-29T00:00:00+00:00
         DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
 //         initialize array for placeids
@@ -45,24 +46,24 @@ public class TheListReader {
 //        pull all venues
         List<Venue> venues = venueRepository.findAll();
 
-//        for each venue in DB, call out for all events matching place_id
+//       for each venue in DB, call out for all events matching place_id
         for (Venue venue : venues){
             String placeId = venue.getPlaceId();
             placeIds.add(placeId);
         }
 
-//        for each place_id, call TheListApi and get matching events
+//       for each place_id, call TheListApi and get matching events
         for (String placeId : placeIds){
             String eventsResponse = eventClient.requestEventsByPlaceId(placeId);
 
-//          for each event make a payload event and store it in a list
+//       for each event make a payload event and store it in a list
             TheListEvent[] foundEvents = objectMapper.readValue(eventsResponse, TheListEvent[].class);
             for (TheListEvent event : foundEvents) {
                 allEvents.add(event);
             }
         }
 
-//        for each event received, make an event object and save it.
+//       for each event received, make an Event Object and save it.
         for (TheListEvent listEvent : allEvents){
 
 //            Prepare data for EventObject properties

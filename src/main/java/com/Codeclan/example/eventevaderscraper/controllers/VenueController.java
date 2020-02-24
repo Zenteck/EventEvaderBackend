@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class VenueController {
 
@@ -24,7 +25,7 @@ public class VenueController {
 
     @GetMapping(value = "/venues/{id}")
     public ResponseEntity getVenue(@PathVariable Long id){
-        return new ResponseEntity<>(venueRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(venueRepository.findById(id), HttpStatus.FOUND);
     }
 
     @PostMapping(value = "/venues")

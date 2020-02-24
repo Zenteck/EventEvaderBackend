@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class    EventController {
 
@@ -23,7 +24,7 @@ public class    EventController {
 
     @GetMapping(value = "/events/{id}")
     public ResponseEntity getEvent(@PathVariable Long id){
-        return new ResponseEntity<>(eventRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(eventRepository.findById(id), HttpStatus.FOUND);
     }
 
     @PostMapping(value = "/events")
@@ -42,43 +43,46 @@ public class    EventController {
     public ResponseEntity<Event> deleteEvent(@PathVariable Long id) {
         Event found = eventRepository.getOne(id);
         eventRepository.delete(found);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/events/{venueId}")
-    public ResponseEntity<Event> postEventByVenue(@PathVariable Long venueId){
+
+
+    @GetMapping(value = "/events/venue/{venueId}")
+    public ResponseEntity<List<Event>> postEventByVenue(@PathVariable Long venueId){
             List<Event> eventsOfVenue = eventRepository.findByVenueId(venueId);
-            return new ResponseEntity<>(null, HttpStatus.OK);
+            return new ResponseEntity<>(eventsOfVenue, HttpStatus.OK);
     }
 
     @GetMapping(value = "/events/today")
-    public ResponseEntity<Event> getAllEventsToday(){
+    public ResponseEntity<List<Event>> getAllEventsToday(){
         LocalDateTime today = LocalDateTime.now();
         List<Event> todaysEvents = eventRepository.findByStartTime(today);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(todaysEvents, HttpStatus.OK);
     }
 
     @GetMapping(value = "/events/tomorrow")
-    public ResponseEntity<Event> getAllEventsTomorrow(){
+    public ResponseEntity<List<Event>> getAllEventsTomorrow(){
         LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
         List<Event> tomorrowsEvents = eventRepository.findByStartTime(tomorrow);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(tomorrowsEvents, HttpStatus.OK);
     }
 
     @GetMapping(value = "/events/next7days")
-    public ResponseEntity<Event> getEventsNext7Days(){
+    public ResponseEntity<List<Event>> getEventsNext7Days(){
         LocalDateTime startDate = LocalDateTime.now();
         LocalDateTime endDate = startDate.plusDays(7);
         List<Event> eventsInNext7Days = eventRepository.findByStartTimeBetween(startDate,endDate);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(eventsInNext7Days, HttpStatus.OK);
     }
 
+
     @GetMapping(value = "events/next30days")
-    public ResponseEntity<Event> getEventsNext30Days(){
+    public ResponseEntity<List<Event>> getEventsNext30Days(){
         LocalDateTime startDate = LocalDateTime.now();
         LocalDateTime endDate = startDate.plusDays(30);
         List<Event> eventsInNext30Days = eventRepository.findByStartTimeBetween(startDate,endDate);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(eventsInNext30Days, HttpStatus.OK);
     }
 
 
