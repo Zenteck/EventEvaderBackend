@@ -1,61 +1,81 @@
 package com.Codeclan.example.eventevaderscraper.clients;
 
-import com.Codeclan.example.eventevaderscraper.models.Event;
-import com.sun.mail.smtp.SMTPTransport;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Date;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.IOException;
 
+@Service
 public class EmailClient {
 
-    public static void sendMail(String recipient) throws Exception{
-        System.out.println("Preparing to send an email");
-        Properties properties = new Properties();
+    @Value("${app.sendgrid.key}")
+    private String templateId;
+    @Autowired
+    SendGrid sendGrid;
 
-        properties.put("mail.smtp.auth","true");
-        properties.put("mail.smtp.starttls.enable","true");
-        properties.put("mail.smtp.host", "smpt.gmail.com");
-        properties.put("mail.smtp.port","587");
+    public String sendEmail(String email) throws IOException {
+        Mail mail = prepareMail(email);
 
-        String myAccountEmail = "evenstevaderapp@gmail.com";
-        String myPassword = "azhar-1code-2";
+        Request request = new Request();
 
-        Session session = Session.getInstance(properties, new Authenticator() {
-                @Override
-                protected PasswordAuthentication getPasswordAuthentication () {
-                return new PasswordAuthentication(myAccountEmail, myPassword);
+        request.setMethod(Method.POST);
+        request.setEndpoint("mail/send");
+
+        try {
+            request.setBody(mail.build());
+
+
+            Response response = sendGrid.api(request);
+
+            if (response != null) {
+                System.out.println("response code form sendgrid" + response.getHeaders());
             }
 
-        });
-
-        Message message = prepareMessage(session, myAccountEmail, recipient);
-        System.out.println(message.getSubject());
-
-        if (message != null) {
-            Transport.send(message);
-            System.out.println("Message sent successfully");
         }
 
+        catch (IOException e) {
+            e.printStackTrace();
+            return "error in sent";
+        }
+
+        return "mail has been sent check your inbox";
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient){
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress((recipient)));
-            message.setSubject("EventsEvader Notification");
-            message.setText("Hey there evader, \n Here are a list of events in the coming week you may want to avoid ");
-            return message;
-        } catch (Exception ex) {
-            Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
-        };
-        return null;
+    public Mail prepareMail(String email){
+        Mail mail = new Mail();
+
+        Email from = new Email();
+
+        Email to = new Email();
+
+        String subject = "SendGrid Test";
+
+        Content content = new Content("text/plain", "Testing the email service");
+
+
+
+        from.setEmail("eventsevaderapp@gmail.com");
+
+        to.setEmail(email);
+
+        Personalization personalization = new Personalization();
+
+        personalization.addTo(to);
+
+        mail.setTemplateId(templateId);
+
+        return mail;
+
     }
 
 }
