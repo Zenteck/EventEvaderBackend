@@ -31,6 +31,10 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
+        userRepository.deleteAll();
+        eventRepository.deleteAll();
+        venueRepository.deleteAll();
+
 
         Venue ibrox = new Venue("Ibrox Stadium", "9a37fbc9-19e0-892b-f58b-c6f40000aaa5");
         venueRepository.save(ibrox);
@@ -66,15 +70,11 @@ public class DataLoader implements ApplicationRunner {
         azhar.addEvent(football1);
         userRepository.save(azhar);
 
-        User elle = new User("plattsnpink@gmail.com");
-        elle.addVenue(hampden);
-        elle.addEvent(rugby1);
-        elle.addEvent(rugby2);
-        userRepository.save(elle);
-
-
+        User eleanor = new User("plattsnpink@gmail.com");
+        eleanor.addVenue(hampden);
+        eleanor.addEvent(rugby1);
+        eleanor.addEvent(rugby2);
+        userRepository.save(eleanor);
 
     }
-
-
 }

@@ -10,9 +10,14 @@ public class EventClient {
     public EventClient() {
     }
 
-    public String requestEvents(){
+    public String requestEventsByPlaceId(String placeId){
 
-        String url = "https://api.list.co.uk/v1/events?place_id=9a37fbc9-19e0-892b-f58b-c6f40000aaa5";
+
+        String baserUrl = "https://api.list.co.uk/v1/events?place_id=";
+
+        String url = baserUrl + placeId;
+
+        System.out.println(url);
 
         RestTemplate restTemplate = new RestTemplate();
 

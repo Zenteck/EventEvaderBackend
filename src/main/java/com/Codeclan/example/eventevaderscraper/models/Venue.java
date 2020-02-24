@@ -20,8 +20,8 @@ public class Venue implements Serializable {
     @Column(name = "capacity")
     private int capacity;
 
-    @Column(name = "place_id")
-    private String place_id;
+    @Column(name = "placeId")
+    private String placeId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class Venue implements Serializable {
     private List<User> users;
 
 
-    public Venue(String name, String place_id){
+    public Venue(String name, String placeId){
         this.name = name;
         this.events = new ArrayList<Event>();
         this.users = new ArrayList<User>();
@@ -100,12 +100,12 @@ public class Venue implements Serializable {
         this.events = events;
     }
 
-    public String getPlace_id() {
-        return place_id;
+    public String getPlaceId() {
+        return placeId;
     }
 
-    public void setPlace_id(String place_id) {
-        this.place_id = place_id;
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
     }
 
     public void setUsers(List<User> users) {
