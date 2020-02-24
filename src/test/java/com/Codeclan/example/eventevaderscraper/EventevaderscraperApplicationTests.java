@@ -58,18 +58,35 @@ class EventevaderscraperApplicationTests {
 
 	@Test
 	void cangetTodaysEvents(){
-		LocalDate today = LocalDate.of(2020, Month.FEBRUARY, 23);
+		LocalDate today = LocalDate.now();
 		List<Event> todaysEvents = eventRepository.findByDate(today);
 		assertEquals(2, todaysEvents.size());
 	}
 
 	@Test
 	void canGetTomorrowsEvents(){
-		LocalDate tomorrow = LocalDate.of(2020, Month.FEBRUARY, 24);
+		LocalDate tomorrow = LocalDate.now().plusDays(1);
 		List<Event> tomorrowsEvents = eventRepository.findByDate(tomorrow);
 		assertEquals(1,tomorrowsEvents.size());
 	}
 
+	/* findByDateBetween() is inclusive of the start and end date. eg If start is Monday and an end date is on Sunday,
+	Sundays and Mondays events are included */
+	@Test
+	void canGetNext7DaysEvents(){
+		LocalDate startDate = LocalDate.now();
+		LocalDate endDate = LocalDate.now().plusDays(7);
+		List<Event> eventsWithin7Days = eventRepository.findByDateBetween(startDate,endDate);
+		assertEquals(5,eventsWithin7Days.size());
+	}
+
+	@Test
+	void canGetNext30DaysEvents(){
+		LocalDate startDate = LocalDate.now();
+		LocalDate endDate = LocalDate.now().plusDays(30);
+		List<Event> eventsWithin30Days = eventRepository.findByDateBetween(startDate,endDate);
+		assertEquals(7,eventsWithin30Days.size());
+	}
 
 
 }
