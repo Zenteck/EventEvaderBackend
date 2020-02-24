@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 class EventevaderscraperApplicationTests {
 
@@ -45,7 +45,7 @@ class EventevaderscraperApplicationTests {
 
 	@Test
 	void canParseString() throws JsonProcessingException, InterruptedException {
-		List<TheListEvent> events = theListReader.getEvents();
+		theListReader.getEvents();
 	}
 
 	@Test
@@ -53,8 +53,6 @@ class EventevaderscraperApplicationTests {
 		List<Venue> venues = venueRepository.findAll();
 		System.out.println(venues);
 	}
-
-
 
 	@Test
 	void canGetPlaceIds(){

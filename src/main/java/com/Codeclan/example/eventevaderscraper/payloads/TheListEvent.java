@@ -18,35 +18,11 @@ public class TheListEvent {
 
     private ArrayList<TheListSchedule> schedules;
 
-    private String start_ts;
-
-    private String end_ts;
-
-    private String place_name;
-
-    private String town;
-
-    private String postal_code;
-
-    private double lat;
-
-    private double lng;
-
-    private int performance_count;
-
-    public TheListEvent(String event_id, String name, List<String> tags, ArrayList<TheListSchedule> schedules, String start_ts, String end_ts, String place_name, String town, String postal_code, double lat, double lng, int performance_count) {
+    public TheListEvent(String event_id, String name, List<String> tags, ArrayList<TheListSchedule> schedules) {
         this.event_id = event_id;
         this.name = name;
         this.tags = tags;
         this.schedules = schedules;
-        this.start_ts = start_ts;
-        this.end_ts = end_ts;
-        this.place_name = place_name;
-        this.town = town;
-        this.postal_code = postal_code;
-        this.lat = lat;
-        this.lng = lng;
-        this.performance_count = performance_count;
     }
 
     public TheListEvent() {
@@ -76,70 +52,6 @@ public class TheListEvent {
         this.tags = tags;
     }
 
-    public String getStart_ts() {
-        return start_ts;
-    }
-
-    public void setStart_ts(String start_ts) {
-        this.start_ts = start_ts;
-    }
-
-    public String getEnd_ts() {
-        return end_ts;
-    }
-
-    public void setEnd_ts(String end_ts) {
-        this.end_ts = end_ts;
-    }
-
-    public String getPlace_name() {
-        return place_name;
-    }
-
-    public void setPlace_name(String place_name) {
-        this.place_name = place_name;
-    }
-
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getPostal_code() {
-        return postal_code;
-    }
-
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
-    public double getLng() {
-        return lng;
-    }
-
-    public void setLng(double lng) {
-        this.lng = lng;
-    }
-
-    public int getPerformance_count() {
-        return performance_count;
-    }
-
-    public void setPerformance_count(int performance_count) {
-        this.performance_count = performance_count;
-    }
-
     public ArrayList<TheListSchedule> getSchedules() {
         return schedules;
     }
@@ -148,9 +60,37 @@ public class TheListEvent {
         this.schedules = schedules;
     }
 
+
+//    Schedule getters
+
     public String getPlaceId(){
        return this.schedules.get(0).getPlace_id();
     }
+
+    public String getStartTime(){
+        return this.schedules.get(0).getStart_ts();
+    }
+
+    public String getTown(){
+        return this.schedules.get(0).getTown();
+    }
+
+    public String getPostcode(){
+        return this.schedules.get(0).getPostal_code();
+    }
+
+    public double getLat(){
+        return this.schedules.get(0).getLat();
+    }
+
+    public double getLng(){
+        return this.schedules.get(0).getLng();
+    }
+
+
+
+
+
 
 
 }

@@ -26,7 +26,7 @@ public class TheListReader {
     @Autowired
     VenueRepository venueRepository;
 
-    public List<TheListEvent> getEvents() throws JsonProcessingException, InterruptedException {
+    public void getEvents() throws JsonProcessingException {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -56,34 +56,15 @@ public class TheListReader {
             String placeId = listEvent.getPlaceId();
             List<Venue> venueByPlaceId = venueRepository.findByPlaceId(placeId);
             Venue venue = venueByPlaceId.get(0);
-                   String date = listEvent.getStart_ts();
-                   String startTime = listEvent.getEnd_ts();
+                   String date = listEvent.getStartTime();
+                   String startTime = listEvent.getStartTime();
                    String title =  listEvent.getName();
             Event eventObject = new Event(date, startTime, title, venue);
             eventRepository.save(eventObject);
             System.out.println(eventObject.getVenue().getPlaceId());
 
         }
-        return allEvents;
     }
 
 
 }
-
-//{
-//        "event_id": "9654b832-ebf5-d79d-887e-a4e500175a3a",
-//        "name": "Glasgow Green - the story of Glasgow's oldest public park",
-//        "tags": [
-//        "talks & lectures",
-//        "kids"
-//        ],
-//        "place_id": "1030eadd-4f1e-b60e-65e0-bcc400004e9d",
-//        "start_ts": "2020-02-27T18:00:00.000Z",
-//        "end_ts": "2020-02-27T18:00:00.000Z",
-//        "place_name": "Bridgeton Library",
-//        "town": "Glasgow",
-//        "postal_code": "G40 2QH",
-//        "lat": "55.84945",
-//        "lng": "-4.22633",
-//        "performance_count": 1
-//        }
