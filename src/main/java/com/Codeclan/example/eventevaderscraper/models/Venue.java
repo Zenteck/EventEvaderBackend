@@ -44,8 +44,8 @@ public class Venue implements Serializable {
     public Venue(String name, String placeId){
         this.name = name;
         this.placeId = placeId;
-        this.events = new ArrayList<Event>();
-        this.users = new ArrayList<User>();
+        this.events = new ArrayList<>();
+        this.users = new ArrayList<>();
     }
 
     public Venue() {
@@ -57,7 +57,7 @@ public class Venue implements Serializable {
         return users;
     }
 
-    public void setUsers(ArrayList<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
@@ -109,7 +109,4 @@ public class Venue implements Serializable {
         this.placeId = placeId;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

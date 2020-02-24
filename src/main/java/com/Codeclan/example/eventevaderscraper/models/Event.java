@@ -63,15 +63,11 @@ import java.util.List;
             return users;
         }
 
-        public void setUsers(ArrayList<User> users) {
-            this.users = users;
-        }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
-         public void setUsers(List<User> users) {
-              this.users = users;
-         }
-
-        public LocalDateTime getStartTime() {
+    public LocalDateTime getStartTime() {
             return startTime;
         }
 

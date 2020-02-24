@@ -62,8 +62,6 @@ public class EmailClient {
 
         Content content = new Content("text/plain", "Testing the email service");
 
-
-
         from.setEmail("eventsevaderapp@gmail.com");
 
         to.setEmail(email);

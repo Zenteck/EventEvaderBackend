@@ -31,8 +31,6 @@ public class EventClient {
 
         String response = listResponse.getBody();
 
-        System.out.println(response);
-
         return response;
     }
 }
