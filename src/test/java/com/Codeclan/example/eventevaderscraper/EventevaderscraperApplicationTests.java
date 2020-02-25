@@ -135,4 +135,11 @@ class EventevaderscraperApplicationTests {
 		sendGridEmailService.send(email);
 	}
 
+
+	@Test
+	public void canSendMultipleEmailsToAllUsers(){
+
+		sendGridEmailService.sendAllEmails();
+	}
+
 }

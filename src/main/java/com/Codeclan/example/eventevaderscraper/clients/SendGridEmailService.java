@@ -108,8 +108,7 @@ import java.util.List;
         email.setReplyTo("eventsevaderapp@gmail.com");
         email.setSubject("Upcoming Events");
         email.setHtmlBody("<h1>Greetings Lord Evader</h1>" +
-                "<p>Here is a list of upcoming events</p>"+
-                    htmlListOfEvents);
+                "<p>Here is a list of upcoming events</p>"+ htmlListOfEvents);
 
         return email;
     }

@@ -28,4 +28,6 @@ public class EmailTest {
         email.setHtmlBody("<h1> Test Email</h1>");
         sendGridEmailService.send(email);
     }
+
+
 }

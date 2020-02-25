@@ -74,6 +74,12 @@ public class DataLoader implements ApplicationRunner {
 
         theListReader.getEvents();
 
+        Event azharEvent1 = eventRepository.getOne(1L);
+        Event alanEvent1 = eventRepository.getOne(2L);
+
+
+        Venue azharVenue = venueRepository.getOne(1L);
+        Venue alanVenue = venueRepository.getOne(2L);
 
 //        Event football1 = new Event("20/02", "1500", "Rangers v Kilmarnock", ibrox);
 //        eventRepository.save(football1);
@@ -89,13 +95,15 @@ public class DataLoader implements ApplicationRunner {
 
         User alan = new User("spambox@zenteck.co.uk");
 //        alan.addVenue(celtic);
-//        alan.addEvent(football2);
+        alan.addEvent(alanEvent1);
+        alan.addVenue(alanVenue);
         userRepository.save(alan);
 
         User azhar = new User("codeninja@codeclan.com");
 //        azhar.addVenue(ibrox);
 //        azhar.addVenue(hampden);
-//        azhar.addEvent(football1);
+        azhar.addEvent(azharEvent1);
+        azhar.addVenue(azharVenue);
         userRepository.save(azhar);
 
         User eleanor = new User("cassona@hotmail.com");
