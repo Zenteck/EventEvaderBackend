@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
@@ -114,7 +115,7 @@ import java.util.List;
     }
 
 
-
+    @Scheduled(cron = "* * 9 * * *")
     public void sendAllEmails() {
 
         List<User> allUsers = userRepository.findAll();
