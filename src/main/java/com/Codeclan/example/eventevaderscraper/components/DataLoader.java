@@ -1,6 +1,7 @@
 package com.Codeclan.example.eventevaderscraper.components;
 
 
+import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.models.User;
 import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
@@ -72,6 +73,8 @@ public class DataLoader implements ApplicationRunner {
 
 
         theListReader.getEvents();
+
+
 //        Event football1 = new Event("20/02", "1500", "Rangers v Kilmarnock", ibrox);
 //        eventRepository.save(football1);
 //
