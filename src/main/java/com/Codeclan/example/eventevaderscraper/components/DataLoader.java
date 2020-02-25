@@ -99,7 +99,7 @@ public class DataLoader implements ApplicationRunner {
         alan.addVenue(alanVenue);
         userRepository.save(alan);
 
-        User azhar = new User("codeninja@codeclan.com");
+        User azhar = new User("azhar981@outlook.com");
 //        azhar.addVenue(ibrox);
 //        azhar.addVenue(hampden);
         azhar.addEvent(azharEvent1);

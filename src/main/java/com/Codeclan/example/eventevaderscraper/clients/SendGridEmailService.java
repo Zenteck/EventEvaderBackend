@@ -97,7 +97,7 @@ import java.util.List;
         String htmlListOfEvents = "<ul>";
 
         for (Event event: usersEvents) {
-            htmlListOfEvents += "<li>" + event.getTitle() + ": on" + event.getStartTime().toString() + "</li>";
+            htmlListOfEvents += "<li>" + event.getTitle() + ": on " + event.getStartTime().toString() + "</li>";
         }
 
         htmlListOfEvents += "</ul>";

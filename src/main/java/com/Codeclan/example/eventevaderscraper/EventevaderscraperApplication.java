@@ -9,11 +9,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 @SpringBootApplication
 public class EventevaderscraperApplication {
 
+	SendGridEmailService sendGridEmailService;
+
 	public static void main(String[] args) {
-		SendGridEmailService sendGridEmailService;
 		SpringApplication.run(EventevaderscraperApplication.class, args);
 
-
 	}
+
+
+
 
 }
