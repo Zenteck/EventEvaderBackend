@@ -109,7 +109,7 @@ import java.util.List;
         email.setSubject("Upcoming Events");
         email.setHtmlBody("<h1>Greetings Lord Evader</h1>" +
                 "<p>Here is a list of upcoming events</p>"+
-                "<ul>" + htmlListOfEvents + "</ul>");
+                    htmlListOfEvents);
 
         return email;
     }

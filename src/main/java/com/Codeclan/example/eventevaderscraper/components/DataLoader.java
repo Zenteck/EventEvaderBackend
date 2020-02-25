@@ -84,7 +84,7 @@ public class DataLoader implements ApplicationRunner {
 //        Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
 //        eventRepository.save(rugby2);
 
-        User alan = new User("apps+eventevader@zenteck.co.uk");
+        User alan = new User("spambox@zenteck.co.uk");
 //        alan.addVenue(celtic);
 //        alan.addEvent(football2);
         userRepository.save(alan);
@@ -95,7 +95,7 @@ public class DataLoader implements ApplicationRunner {
 //        azhar.addEvent(football1);
         userRepository.save(azhar);
 
-        User eleanor = new User("plattsnpink@gmail.com");
+        User eleanor = new User("cassona@hotmail.com");
 //        eleanor.addVenue(hampden);
 //        eleanor.addEvent(rugby1);
 //        eleanor.addEvent(rugby2);
