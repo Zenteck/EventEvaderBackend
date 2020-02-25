@@ -1,14 +1,18 @@
 package com.Codeclan.example.eventevaderscraper;
 
 import com.Codeclan.example.eventevaderscraper.clients.EventClient;
+
 import com.Codeclan.example.eventevaderscraper.components.TheListReader;
 import com.Codeclan.example.eventevaderscraper.models.Venue;
 import com.Codeclan.example.eventevaderscraper.models.Event;
 import com.Codeclan.example.eventevaderscraper.repositories.EventRepository;
 import com.Codeclan.example.eventevaderscraper.repositories.VenueRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import com.Codeclan.example.eventevaderscraper.clients.SendGridEmailService;
+import com.Codeclan.example.eventevaderscraper.payloads.Email;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -73,6 +77,7 @@ class EventevaderscraperApplicationTests {
 		System.out.println(venue.getName());
 	}
 
+
 //	@Test
 //	void canGetEventsByVenue(){
 //
@@ -112,5 +117,22 @@ class EventevaderscraperApplicationTests {
 //		assertEquals(7,eventsWithin30Days.size());
 //	}
 
+
+	@Autowired
+	SendGridEmailService sendGridEmailService;
+
+
+	@Test
+	public void canSendEmail(){
+
+		Email email = new Email();
+		email.setRecipient("azhar981@gmail.com");
+		email.setRecipientFirstName("Azhar");
+		email.setRecipientLastName("Sharif");
+		email.setReplyTo("eventsevaderapp@gmail.com");
+		email.setSubject("Event evader test ");
+		email.setHtmlBody("<h1> Test Email</h1>");
+		sendGridEmailService.send(email);
+	}
 
 }
