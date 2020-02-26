@@ -19,8 +19,6 @@ import java.util.List;
 
     public class Event implements Serializable{
 
-//        @Column(name = "date")
-//        private LocalDate date;
 
         @Column(name = "startTime")
         private LocalDateTime startTime;
