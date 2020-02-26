@@ -64,13 +64,13 @@ import java.util.List;
             return users;
         }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public LocalDateTime getStartTime() {
-            return startTime;
+        public void setUsers(List<User> users) {
+            this.users = users;
         }
+
+        public LocalDateTime getStartTime() {
+                return startTime;
+            }
 
         public void setStartTime(LocalDateTime startTime) {
             this.startTime = startTime;

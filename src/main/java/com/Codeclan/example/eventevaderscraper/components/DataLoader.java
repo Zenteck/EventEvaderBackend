@@ -14,6 +14,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -74,25 +76,16 @@ public class DataLoader implements ApplicationRunner {
 
         theListReader.getEvents();
 
-        Event azharEvent1 = eventRepository.getOne(1L);
-        Event alanEvent1 = eventRepository.getOne(2L);
+        List<Event> events = eventRepository.findAll();
+        Event azharEvent1 = events.get(0);
+        Event alanEvent1 = events.get(1);
 
 
-        Venue azharVenue = venueRepository.getOne(1L);
-        Venue alanVenue = venueRepository.getOne(2L);
+        List <Venue> venues = venueRepository.findAll();
+        Venue azharVenue = venues.get(0);
+        Venue alanVenue = venues.get(1);
 
-//        Event football1 = new Event("20/02", "1500", "Rangers v Kilmarnock", ibrox);
-//        eventRepository.save(football1);
 //
-//        Event football2 = new Event("27/02", "1900", "Celtic v Cally", celtic);
-//        eventRepository.save(football2);
-//
-//        Event rugby1 = new Event("24/02", "1200", "Scotland v Ireland", hampden);
-//        eventRepository.save(rugby1);
-//
-//        Event rugby2 = new Event("01/03", "1315", "Scotland v Wales", hampden);
-//        eventRepository.save(rugby2);
-
         User alan = new User("spambox@zenteck.co.uk");
 //        alan.addVenue(celtic);
         alan.addEvent(alanEvent1);
