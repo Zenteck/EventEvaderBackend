@@ -2,6 +2,7 @@ package com.Codeclan.example.eventevaderscraper.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -97,6 +98,11 @@ import java.util.List;
 
         public void setVenue(Venue venue) {
             this.venue = venue;
+        }
+
+        @Scheduled(cron = "*/2 * * * * *")
+        public void printsHello(){
+            System.out.println("Hello");
         }
 
     }
