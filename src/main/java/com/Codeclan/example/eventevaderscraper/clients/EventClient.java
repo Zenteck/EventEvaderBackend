@@ -1,6 +1,7 @@
 package com.Codeclan.example.eventevaderscraper.clients;
 
 import org.springframework.http.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,6 +10,7 @@ public class EventClient {
 
     public EventClient() {
     }
+
 
     public String requestEventsByPlaceId(String placeId){
 

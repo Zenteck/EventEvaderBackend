@@ -34,12 +34,8 @@ public class DataLoader implements ApplicationRunner {
     }
 
 
-    @Scheduled(cron = "0 0 9-21 * * *")
+    @Scheduled(cron = "25/20 * * * * *")
     public void run(ApplicationArguments args) throws JsonProcessingException {
-
-        userRepository.deleteAll();
-        eventRepository.deleteAll();
-        venueRepository.deleteAll();
 
 
 

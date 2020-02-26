@@ -9,12 +9,14 @@ import com.Codeclan.example.eventevaderscraper.repositories.VenueRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Component
 public class TheListReader {
@@ -29,6 +31,7 @@ public class TheListReader {
     VenueRepository venueRepository;
 
 
+     @Scheduled(cron = "25/10 0 0 ? * * *")
     public void getEvents() throws JsonProcessingException {
 
 //        initialize array for payload events
@@ -83,7 +86,11 @@ public class TheListReader {
             Event eventObject = new Event(startTime, title, venue);
 
             for (Event oldEvent: existingEvents){
-                if (oldEvent.getTitle().equals(eventObject.getTitle()) && oldEvent.getStartTime() == eventObject.getStartTime()) {
+                String oldTitle = oldEvent.getTitle();
+                String newTitle = eventObject.getTitle();
+                LocalDateTime oldTime = oldEvent.getStartTime();
+                LocalDateTime newTime = eventObject.getStartTime();
+                if (oldTime == newTime && oldTitle == newTitle) {
                     exists = true;
                 }
             }
