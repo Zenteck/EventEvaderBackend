@@ -23,7 +23,6 @@ import java.util.List;
         @Column(name = "startTime")
         private LocalDateTime startTime;
 
-
         @Column(name = "title")
         private String title;
 
@@ -97,4 +96,4 @@ import java.util.List;
             this.venue = venue;
         }
 
-    }
+}

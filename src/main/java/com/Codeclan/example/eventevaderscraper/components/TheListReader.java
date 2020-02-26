@@ -46,6 +46,9 @@ public class TheListReader {
 //        pull all venues
         List<Venue> venues = venueRepository.findAll();
 
+//        pull all events
+        List<Event> existingEvents = eventRepository.findAll();
+
 //       for each venue in DB, call out for all events matching place_id
         for (Venue venue : venues){
             String placeId = venue.getPlaceId();
@@ -66,17 +69,25 @@ public class TheListReader {
 //       for each event received, make an Event Object and save it.
         for (TheListEvent listEvent : allEvents){
 
+
+
 //            Prepare data for EventObject properties
             String placeId = listEvent.getPlaceId();
             List<Venue> venueByPlaceId = venueRepository.findByPlaceId(placeId);
             Venue venue = venueByPlaceId.get(0);
             LocalDateTime startTime = LocalDateTime.parse(listEvent.getStartTime(), formatter);
             String title =  listEvent.getName();
+            boolean exists = false;
 
 //            save an event object(finally!)
             Event eventObject = new Event(startTime, title, venue);
-            eventRepository.save(eventObject);
 
+            for (Event oldEvent: existingEvents){
+                if (oldEvent.getTitle().equals(eventObject.getTitle()) && oldEvent.getStartTime() == eventObject.getStartTime()) {
+                    exists = true;
+                }
+            }
+            if (!exists) {eventRepository.save(eventObject);}
         }
     }
 }
